@@ -36,3 +36,37 @@
     transform: rotate(360deg);
   }
 }
+
+.banner-container {
+  padding: 20px 0;
+  flex-basis: 80%;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+}
+.footer-container {
+  padding: 20px 0;
+  flex: 0 1 80%;
+}
+
+main {
+  flex-grow: 1;
+}
+
+.welcomePage {
+  background-color: lightgrey;
+  background-position: center center;
+  display: flex;
+  justify-content: space-between;
+  height: 500px;
+}
