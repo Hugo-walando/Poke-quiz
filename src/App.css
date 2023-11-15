@@ -1,5 +1,4 @@
 .App {
-  text-align: center;
   background-color: rgb(238, 238, 238);
 }
 
@@ -27,6 +26,9 @@
 
 .App-link {
   color: #61dafb;
+}
+body {
+  text-align: center;
 }
 
 @keyframes App-logo-spin {
@@ -134,6 +136,5 @@ header {
 }
 
 .title-container {
-  margin-top: 113px;
-  z-index: 100;
+  margin: 50px;
 }

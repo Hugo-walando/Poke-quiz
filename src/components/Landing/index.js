@@ -1,9 +1,15 @@
+import { Link } from "react-router-dom";
+
 const Landing = () => {
   return (
     <main className="welcomePageBox">
       <div className="welcomePage">
-        <div className="btn-welcome">Inscription</div>
-        <div className="btn-welcome">Connexion</div>
+        <Link className="btn-welcome" to="/signup">
+          Inscription
+        </Link>
+        <Link className="btn-welcome" to="/login  ">
+          Connexion
+        </Link>
       </div>
     </main>
   );
