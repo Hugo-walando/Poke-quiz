@@ -27,9 +27,6 @@
 .App-link {
   color: #61dafb;
 }
-body {
-  text-align: center;
-}
 
 @keyframes App-logo-spin {
   from {
@@ -44,6 +41,7 @@ body {
   padding: 20px 0;
   flex-basis: 80%;
   height: 120px;
+  text-align: center;
 }
 
 body {
@@ -62,6 +60,7 @@ footer {
 .footer-container {
   padding: 20px 0;
   flex: 0 1 80%;
+  text-align: center;
 }
 
 main {
@@ -137,4 +136,99 @@ header {
 
 .title-container {
   margin: 50px;
+}
+
+.formBoxSignup {
+  height: 550px;
+  background-color: rgb(51, 157, 85);
+  width: 60%;
+  border-radius: 50px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formContent {
+  width: 60%;
+}
+
+.formContent .inputBox {
+  margin-top: 30px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.formContent .inputBox input {
+  width: 80%;
+  height: 100%;
+  outline: none;
+  border: none;
+  font-weight: bold;
+  background: white;
+  font-size: 100%;
+  padding: 3%;
+  border-radius: 30px;
+}
+
+.formContent .inputBox label {
+  position: absolute;
+  top: 4%;
+  left: 9%;
+  font-weight: bold;
+  font-size: 100%;
+}
+
+.formContent .inputBox input:focus ~ label,
+.formContent .inputBox input:valid ~ label {
+  transition: 300ms;
+  top: -51%;
+  left: 9%;
+  color: white;
+}
+
+.headerTitle {
+  font-size: 40px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+.formContent button {
+  margin: 0 auto;
+  display: block;
+  margin-top: 5%;
+  background-color: white;
+  padding: 2% 4%;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(51, 157, 85);
+}
+
+.formContent button:hover {
+  transition: 600ms;
+  background-color: rgb(255, 229, 172);
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.formContent button:disabled {
+  opacity: 40%;
+}
+.linkContainer {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.linkContainer a {
+  text-decoration: none;
+  font-size: bold;
+  color: white;
+}
+
+.linkContainer a:hover {
+  text-decoration: underline;
 }
