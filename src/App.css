@@ -13,6 +13,14 @@
   }
 }
 
+.container {
+  padding: 30px;
+  flex: 0 1 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -231,4 +239,43 @@ header {
 
 .linkContainer a:hover {
   text-decoration: underline;
+}
+
+.signUpLoginBox {
+  height: 550px;
+  background-color: rgb(51, 157, 85);
+  width: 60%;
+  border-radius: 50px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoutContainer {
+  margin: 0 auto;
+  width: 60%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+}
+
+.decoBtn {
+  cursor: pointer;
+}
+
+.decoBtn:hover {
+  text-decoration: underline;
+}
+
+.error {
+  border: 1px solid red;
+  color: red;
+  text-align: center;
+}
+
+.success {
+  border: 1px solid rgb(106, 253, 106);
+  color: rgb(106, 253, 106);
+  text-align: center;
 }

@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "../Firebase/firebaseConfig";
+import { auth, user } from "../Firebase/firebaseConfig";
+import { setDoc } from "firebase/firestore";
 import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
@@ -22,7 +23,13 @@ const Signup = () => {
     e.preventDefault();
     const { email, password } = loginData;
     createUserWithEmailAndPassword(auth, email, password)
-      .then((user) => {
+      .then((authUser) => {
+        return setDoc(user(authUser.user.uid), {
+          pseudo,
+          email,
+        });
+      })
+      .then(() => {
         setLoginData({ ...data });
         navigate("/welcome");
       })
@@ -39,9 +46,9 @@ const Signup = () => {
     email === "" ||
     password === "" ||
     password !== confirmPassword ? (
-      <button disabled>Confirmer</button>
+      <button disabled>S'inscrire</button>
     ) : (
-      <button>Confirmer</button>
+      <button>S'inscrire</button>
     );
 
   const errorMsg = error !== "" && <span>{error.message} </span>;
