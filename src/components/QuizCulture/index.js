@@ -44,7 +44,7 @@ export const QuizCulture = [
         {
           id: 5,
           question:
-            "Quel est le taux d'alcool à ne pas dépasser pour prednre le volant ?",
+            "Quel est le taux d'alcool à ne pas dépasser pour prendre le volant ?",
           options: [
             "0,2 par litre de sang",
             "0,5g par litre de sang",
@@ -63,7 +63,8 @@ export const QuizCulture = [
         },
         {
           id: 7,
-          question: "Quelle est le joueur de League of legends le plus titré ?",
+          question:
+            "Quel est le joueur de League of legends ayant gagné le plus de fois les Worlds ?",
           options: ["Faker", "Rookie", "Uzi", "Rekkles"],
           answer: "Faker",
           heroId: 10,

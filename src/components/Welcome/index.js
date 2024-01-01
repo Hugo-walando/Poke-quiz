@@ -24,7 +24,7 @@ const Welcome = (props) => {
         .then((snapshot) => {
           if (snapshot.exists()) {
             const docData = snapshot.data();
-            setUserData(docData);
+            setUserData((prevUserData) => ({ ...prevUserData, ...docData }));
           }
         })
         .catch((error) => {

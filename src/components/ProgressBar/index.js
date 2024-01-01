@@ -1,17 +1,23 @@
-import { Fragment } from "react";
+import React, { Fragment } from "react";
 
-const ProgressBar = () => {
+const ProgressBar = ({ idQuestion, maxQuestions }) => {
+  const getWidth = (totalQuestion, questionId) => {
+    return (100 / totalQuestion) * questionId;
+  };
+
+  const actualQuestion = idQuestion + 1;
+
+  const progressPercent = getWidth(maxQuestions, actualQuestion);
+
   return (
     <Fragment>
       <div className="percentage">
-        <div className="progressPercent">Question: 1/10</div>
-        <div className="progressPercent">Progression: 10%</div>
-      </div>
-      <div className="progressBar">
-        <div className="progressBarChange" style={{ width: "10%" }}></div>
+        <div className="questionNumber">
+          {`Question: ${actualQuestion}/${maxQuestions}`}
+        </div>
       </div>
     </Fragment>
   );
 };
 
-export default ProgressBar;
+export default React.memo(ProgressBar);

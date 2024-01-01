@@ -14,7 +14,7 @@
 }
 
 .container {
-  padding: 30px;
+  padding: 0 30px;
   flex: 0 1 80%;
   display: flex;
   flex-direction: column;
@@ -58,6 +58,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  font-family: "Roboto", sans-serif;
 }
 
 footer {
@@ -278,4 +279,95 @@ header {
   border: 1px solid rgb(106, 253, 106);
   color: rgb(106, 253, 106);
   text-align: center;
+}
+
+.quizWrapper {
+  background-color: rgb(51, 157, 85);
+  border-radius: 30px;
+  margin: 0 auto;
+  width: 70%;
+  height: 500px;
+  position: relative;
+}
+
+.questionText {
+  margin: auto;
+  max-width: 600px;
+  color: white;
+  padding: 12px;
+  letter-spacing: 0px;
+  font-size: 24px;
+  text-transform: inherit;
+  text-align: center;
+}
+
+.answerOptions {
+  transition: 0.5s;
+  padding: 5px 30px;
+  background-color: white;
+  font-size: 20px;
+  margin: 0 auto;
+  border-radius: 20px;
+  margin-top: 25px;
+  text-align: center;
+  width: 500px;
+  color: rgb(51, 157, 85);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.answerOptions:hover {
+  cursor: pointer;
+  background-color: rgb(255, 229, 172);
+}
+
+.answerOptions.selected {
+  transition: 0.5s;
+  padding: 7px 50px;
+  font-size: 24px;
+  background-color: rgb(255, 229, 172);
+}
+
+.nextBtn:disabled {
+  opacity: 0.5;
+}
+
+.nextBtn {
+  display: block;
+  padding: 20px 50px;
+  background-color: white;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  color: rgb(51, 157, 85);
+  border-radius: 15px;
+  margin: 0 auto;
+  margin-top: 20px;
+  box-shadow: 2px 2px 1px 1px lightgray;
+}
+
+.nextBtn:hover {
+  cursor: pointer;
+  background-color: rgb(255, 229, 172);
+}
+
+.level {
+  padding: 20px;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 25px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  color: rgb(51, 157, 85);
+}
+
+.questionNumber {
+  background-color: white;
+  width: fit-content;
+  border-radius: 20px;
+  padding: 10px 18px;
+  box-shadow: 0px -5px 15px -5px rgba(47, 36, 102, 0.4);
+  margin: auto;
+  margin-top: -20px;
+  margin-bottom: 20px;
+  color: rgb(51, 157, 85);
 }

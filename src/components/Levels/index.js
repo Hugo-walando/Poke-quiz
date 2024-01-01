@@ -1,7 +1,7 @@
 const Levels = () => {
   return (
     <div className="levelsContainer">
-      <div className="headingLevels">Débutant</div>
+      <div className="level">Débutant</div>
     </div>
   );
 };

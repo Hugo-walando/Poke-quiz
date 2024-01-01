@@ -1,7 +1,12 @@
 import React, { Component } from "react";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { QuizCulture } from "../QuizCulture";
 import Levels from "../Levels";
 import ProgressBar from "../ProgressBar";
+import QuizOver from "../QuizOver";
+
+toast.configure();
 
 class Quiz extends Component {
   state = {
@@ -15,6 +20,9 @@ class Quiz extends Component {
     btnDisabled: true,
     userAnswer: null,
     score: 0,
+    successMsg: "Bonne réponse ! +1",
+    errorMsg: "Raté...",
+    quizEnd: false,
   };
 
   storedDataRef = React.createRef();
@@ -36,12 +44,26 @@ class Quiz extends Component {
     }
   };
 
+  showWelcomeMsg = (pseudo) => {
+    toast.info(`Bienvenue sur QuizCulture ${pseudo}, et bonne chance! `, {
+      position: "top-right",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: false,
+      progress: undefined,
+      theme: "light",
+    });
+  };
+
   componentDidMount() {
     this.loadQuestions(this.state.levelNames[this.state.quizLevel]);
   }
 
   nextQuestion = () => {
     if (this.state.idQuestion === this.state.maxQuestions - 1) {
+      this.gameOver();
     } else {
       this.setState((prevState) => ({
         idQuestion: prevState.idQuestion + 1,
@@ -54,10 +76,41 @@ class Quiz extends Component {
       this.setState((prevState) => ({
         score: prevState.score + 1,
       }));
+
+      // if (this.state.score === 2) {
+      //   this.setState({
+      //     successMsg: "Encore une bonne réponse !",
+      //   });
+      // }
+      toast.success(this.state.successMsg, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
+    } else {
+      toast.error(this.state.errorMsg, {
+        position: "top-right",
+        autoClose: 2000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "light",
+      });
     }
   };
 
   componentDidUpdate(prevProps, prevState) {
+    if (this.props.userData && this.props.userData !== prevProps.userData) {
+      this.showWelcomeMsg(this.props.userData.pseudo);
+    }
+
     if (this.state.storedQuestions !== prevState.storedQuestions) {
       this.setState({
         question: this.state.storedQuestions[this.state.idQuestion].question,
@@ -82,10 +135,16 @@ class Quiz extends Component {
     });
   };
 
+  gameOver = () => {
+    this.setState({
+      quizEnd: true,
+    });
+  };
+
   render() {
     const displayOptions = this.state.options.map((option, index) => {
       return (
-        <p
+        <div
           key={index}
           className={`answerOptions ${
             this.state.userAnswer === option ? "selected" : null
@@ -93,22 +152,29 @@ class Quiz extends Component {
           onClick={() => this.submitAnswer(option)}
         >
           {option}
-        </p>
+        </div>
       );
     });
 
-    return (
-      <div>
+    return !this.state.quizEnd ? (
+      <QuizOver ref={this.storedDataRef} />
+    ) : (
+      <div className="quizWrapper">
         <Levels />
-        <ProgressBar />
-        <div>{this.state.question}</div>
+        <ProgressBar
+          idQuestion={this.state.idQuestion}
+          maxQuestions={this.state.maxQuestions}
+        />
+        <div className="questionText">{this.state.question}</div>
         <div>{displayOptions}</div>
         <button
           disabled={this.state.btnDisabled}
-          className="btnSubmit"
+          className="nextBtn"
           onClick={this.nextQuestion}
         >
-          Suivant
+          {this.state.idQuestion < this.state.maxQuestions - 1
+            ? "Suivant"
+            : "Terminer"}
         </button>
       </div>
     );
