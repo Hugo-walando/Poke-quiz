@@ -13,6 +13,14 @@
   }
 }
 
+.container {
+  padding: 0 30px;
+  flex: 0 1 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -26,9 +34,6 @@
 
 .App-link {
   color: #61dafb;
-}
-body {
-  text-align: center;
 }
 
 @keyframes App-logo-spin {
@@ -44,6 +49,7 @@ body {
   padding: 20px 0;
   flex-basis: 80%;
   height: 120px;
+  text-align: center;
 }
 
 body {
@@ -52,6 +58,7 @@ body {
   height: 100vh;
   display: flex;
   flex-direction: column;
+  font-family: "Roboto", sans-serif;
 }
 
 footer {
@@ -62,6 +69,7 @@ footer {
 .footer-container {
   padding: 20px 0;
   flex: 0 1 80%;
+  text-align: center;
 }
 
 main {
@@ -137,4 +145,316 @@ header {
 
 .title-container {
   margin: 50px;
+}
+
+.formBoxSignup {
+  height: 550px;
+  background-color: rgb(51, 157, 85);
+  width: 60%;
+  border-radius: 50px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formContent {
+  width: 60%;
+}
+
+.formContent .inputBox {
+  margin-top: 30px;
+  width: 100%;
+  text-align: center;
+  position: relative;
+}
+
+.formContent .inputBox input {
+  width: 80%;
+  height: 100%;
+  outline: none;
+  border: none;
+  font-weight: bold;
+  background: white;
+  font-size: 100%;
+  padding: 3%;
+  border-radius: 30px;
+}
+
+.formContent .inputBox label {
+  position: absolute;
+  top: 4%;
+  left: 9%;
+  font-weight: bold;
+  font-size: 100%;
+}
+
+.formContent .inputBox input:focus ~ label,
+.formContent .inputBox input:valid ~ label {
+  transition: 300ms;
+  top: -51%;
+  left: 9%;
+  color: white;
+}
+
+.headerTitle {
+  font-size: 40px;
+  text-align: center;
+  color: white;
+  font-weight: bold;
+}
+
+.formContent button {
+  margin: 0 auto;
+  display: block;
+  margin-top: 5%;
+  background-color: white;
+  padding: 2% 4%;
+  border-radius: 20px;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(51, 157, 85);
+}
+
+.formContent button:hover {
+  transition: 600ms;
+  background-color: rgb(255, 229, 172);
+  cursor: pointer;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.formContent button:disabled {
+  opacity: 40%;
+}
+.linkContainer {
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.linkContainer a {
+  text-decoration: none;
+  font-size: bold;
+  color: white;
+}
+
+.linkContainer a:hover {
+  text-decoration: underline;
+}
+
+.signUpLoginBox {
+  height: 550px;
+  background-color: rgb(51, 157, 85);
+  width: 60%;
+  border-radius: 50px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logoutContainer {
+  margin: 0 auto;
+  width: 60%;
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 30px;
+}
+
+.decoBtn {
+  cursor: pointer;
+}
+
+.decoBtn:hover {
+  text-decoration: underline;
+}
+
+.error {
+  border: 1px solid red;
+  color: red;
+  text-align: center;
+}
+
+.success {
+  border: 1px solid rgb(106, 253, 106);
+  color: rgb(106, 253, 106);
+  text-align: center;
+}
+
+.quizWrapper {
+  background-color: rgb(51, 157, 85);
+  border-radius: 30px;
+  margin: 0 auto;
+  width: 70%;
+  height: 500px;
+  position: relative;
+  box-shadow: 0px 0px 15px 1px rgba(47, 36, 102, 0.4);
+}
+
+.questionText {
+  margin: auto;
+  max-width: 600px;
+  color: white;
+  padding: 12px;
+  letter-spacing: 0px;
+  font-size: 24px;
+  text-transform: inherit;
+  text-align: center;
+}
+
+.answerOptions {
+  transition: 0.5s;
+  padding: 5px 30px;
+  background-color: white;
+  font-size: 20px;
+  margin: 0 auto;
+  border-radius: 20px;
+  margin-top: 25px;
+  text-align: center;
+  width: 500px;
+  color: rgb(51, 157, 85);
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.answerOptions:hover {
+  cursor: pointer;
+  background-color: rgb(255, 229, 172);
+}
+
+.answerOptions.selected {
+  transition: 0.5s;
+  padding: 7px 50px;
+  font-size: 24px;
+  background-color: rgb(255, 229, 172);
+}
+
+.nextBtn:disabled {
+  opacity: 0.5;
+}
+
+.nextBtn {
+  display: block;
+  padding: 20px 50px;
+  background-color: white;
+  font-size: 20px;
+  font-family: "Roboto", sans-serif;
+  color: rgb(51, 157, 85);
+  border-radius: 15px;
+  margin: 0 auto;
+  margin-top: 20px;
+  box-shadow: 2px 2px 1px 1px lightgray;
+}
+
+.nextBtn:hover {
+  cursor: pointer;
+  background-color: rgb(255, 229, 172);
+}
+
+.level {
+  padding: 20px;
+  background-color: white;
+  position: absolute;
+  top: 0;
+  left: 25px;
+  border-bottom-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  color: rgb(51, 157, 85);
+}
+
+.questionNumber {
+  background-color: white;
+  width: fit-content;
+  border-radius: 20px;
+  padding: 10px 18px;
+  box-shadow: 0px -5px 15px -5px rgba(47, 36, 102, 0.4);
+  margin: auto;
+  margin-top: -20px;
+  margin-bottom: 20px;
+  color: rgb(51, 157, 85);
+}
+table {
+  margin: 0 auto;
+  margin-top: 20px;
+  box-shadow: 0px 0px 15px 1px rgba(47, 36, 102, 0.4);
+  border-radius: 20px;
+  overflow: hidden;
+  height: 100%;
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid lightgray;
+}
+
+th,
+td {
+  padding: 10px;
+}
+
+th {
+  background-color: rgb(51, 157, 85);
+  color: white;
+}
+
+.btnInfo {
+  margin-top: 10px;
+  margin-left: 4px;
+  background-color: rgb(51, 157, 85);
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.btnInfo:hover {
+  cursor: pointer;
+  color: rgb(51, 157, 85);
+  background-color: white;
+}
+
+.stepsBtnContainer {
+  background-color: rgb(51, 157, 85);
+  margin: 0 auto;
+  box-shadow: 0px 0px 15px 1px rgba(47, 36, 102, 0.4);
+  padding: 20px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.successMsg {
+  color: rgb(51, 218, 51);
+  font-size: 40px;
+}
+
+.failureMsg {
+  font-size: 40px;
+  color: rgb(226, 49, 49);
+}
+
+.percentage {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  width: 500px;
+  padding: 10px;
+  font-size: 30px;
+  color: white;
+}
+
+.btnResult {
+  padding: 15px;
+  border-radius: 40px;
+  color: rgb(51, 157, 85);
+  font-weight: 600;
+  background-color: white;
+  font-size: 25px;
+  margin-top: 10px;
+}
+
+.btnResult:hover {
+  cursor: pointer;
+  transition: 0.5s;
+  color: white;
+  background-color: rgb(51, 157, 85);
 }
