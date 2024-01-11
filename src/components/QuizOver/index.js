@@ -1,44 +1,212 @@
 import React, { Fragment, useEffect, useState } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const QuizOver = React.forwardRef((props, ref) => {
+  const {
+    levelNames,
+    score,
+    maxQuestions,
+    quizLevel,
+    percent,
+    userAnswers,
+    loadLevelQuestions,
+  } = props;
+
   const [asked, setAsked] = useState([]);
 
   useEffect(() => {
     setAsked(ref.current);
   }, [ref]);
 
-  const questionAnswer = asked.map((question) => {
-    return (
-      <tr key={question.id}>
-        <td>{question.question}</td>
-        <td>{question.answer}</td>
-        <td></td>
-        <button className="btnInfo">Infos</button>
-      </tr>
+  const averageGrade = maxQuestions / 2;
+
+  const decision =
+    score >= averageGrade ? (
+      <>
+        <div className="stepsBtnContainer">
+          {quizLevel < levelNames.length ? (
+            <>
+              <div className="successMsg">
+                Bravo, passez au niveau suivant !
+              </div>
+              <button
+                className="btnResult"
+                onClick={() => loadLevelQuestions(quizLevel)}
+              >
+                Niveau suivant{" "}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="20"
+                  width="18"
+                  viewBox="0 0 448 512"
+                >
+                  <path
+                    fill="#539B5C"
+                    d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"
+                  />
+                </svg>
+              </button>
+            </>
+          ) : (
+            <>
+              <div className="successMsg">Bravo, vous êtes un expert !</div>
+              <button
+                className="btnResult"
+                onClick={() => loadLevelQuestions(0)}
+              >
+                Recommencer le quiz{" "}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="19"
+                  width="19"
+                  viewBox="0 0 512 512"
+                >
+                  <path
+                    fill="#539B5C"
+                    d="M463.5 224H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1c-87.5 87.5-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5z"
+                  />
+                </svg>
+              </button>
+            </>
+          )}
+          <div className="percentage">
+            <div>Réussite: {percent}%</div>
+            <div>
+              Note: {score}/{maxQuestions}
+            </div>
+          </div>
+        </div>
+      </>
+    ) : (
+      <>
+        <div className="stepsBtnContainer">
+          <div className="failureMsg">Vous avez échoué !</div>
+          <button className="btnResult" onClick={() => loadLevelQuestions(0)}>
+            Recommencer le quiz{" "}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="19"
+              width="19"
+              viewBox="0 0 512 512"
+            >
+              <path
+                fill="#539B5C"
+                d="M463.5 224H472c13.3 0 24-10.7 24-24V72c0-9.7-5.8-18.5-14.8-22.2s-19.3-1.7-26.2 5.2L413.4 96.6c-87.6-86.5-228.7-86.2-315.8 1c-87.5 87.5-87.5 229.3 0 316.8s229.3 87.5 316.8 0c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0c-62.5 62.5-163.8 62.5-226.3 0s-62.5-163.8 0-226.3c62.2-62.2 162.7-62.5 225.3-1L327 183c-6.9 6.9-8.9 17.2-5.2 26.2s12.5 14.8 22.2 14.8H463.5z"
+              />
+            </svg>
+          </button>
+          <div className="percentage">
+            <div>Réussite: {percent}</div>
+            <div>
+              Note: {score}/{maxQuestions}
+            </div>
+          </div>
+        </div>
+      </>
     );
+
+  const questionAnswer = asked.map((question, index) => {
+    const userResponse = userAnswers[index];
+    if (score >= averageGrade) {
+      return (
+        <tr key={question.id}>
+          <td>
+            {userResponse === question.answer ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="30"
+                width="30"
+                viewBox="0 0 448 512"
+              >
+                <path
+                  fill="#27ff24"
+                  d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="30"
+                width="30"
+                viewBox="0 0 384 512"
+              >
+                <path
+                  fill="#ef1f1f"
+                  d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+                />
+              </svg>
+            )}
+          </td>
+          <td>{question.question}</td>
+          <td>{question.answer} </td>
+          <td>{userResponse}</td>
+        </tr>
+      );
+    } else {
+      return (
+        <tr key={question.id}>
+          <td>
+            {userResponse === question.answer ? (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="30"
+                width="30"
+                viewBox="0 0 448 512"
+              >
+                <path
+                  fill="#27ff24"
+                  d="M438.6 105.4c12.5 12.5 12.5 32.8 0 45.3l-256 256c-12.5 12.5-32.8 12.5-45.3 0l-128-128c-12.5-12.5-12.5-32.8 0-45.3s32.8-12.5 45.3 0L160 338.7 393.4 105.4c12.5-12.5 32.8-12.5 45.3 0z"
+                />
+              </svg>
+            ) : (
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                height="30"
+                width="30"
+                viewBox="0 0 384 512"
+              >
+                <path
+                  fill="#ef1f1f"
+                  d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"
+                />
+              </svg>
+            )}
+          </td>
+          <td>{question.question}</td>
+          <td>{userResponse}</td>
+        </tr>
+      );
+    }
   });
+
+  const showAnswers = () => {
+    if (score >= averageGrade) {
+      return (
+        <tr>
+          <th>Resultat</th>
+          <th>Question</th>
+          <th>Bonnes Réponses</th>
+          <th>Vos Réponses</th>
+        </tr>
+      );
+    } else {
+      return (
+        <tr>
+          <th>Resultat</th>
+          <th>Question</th>
+          <th>Vos Réponses</th>
+        </tr>
+      );
+    }
+  };
 
   return (
     <Fragment>
-      <div className="stepsBtnContainer">
-        <div className="successMsg  ">Bravo, vous avez réussi !</div>
-        <button className="btnResult success">Niveau suivant</button>
-      </div>
-      <div className="percentage">
-        <div>Réussite: 10%</div>
-        <div>Note 10/10</div>
-      </div>
+      {decision}
 
-      <div>Les réponses au questions posées</div>
       <div className="answerContainer">
         <table className="answers">
-          <thead>
-            <tr>
-              <th>Question</th>
-              <th>Réponse</th>
-              <th>Infos</th>
-            </tr>
-          </thead>
+          <thead>{showAnswers()}</thead>
           <tbody>{questionAnswer}</tbody>
         </table>
       </div>

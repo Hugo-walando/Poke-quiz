@@ -70,11 +70,11 @@ const Login = () => {
         </form>
         <div className="linkContainer">
           <Link className="simpleLink" to="/signup">
-            Nouveau sur CultureQuiz ? Inscrit-toi maintenant !
+            Nouveau sur QuizCulture ? Inscris-toi maintenant !
           </Link>
           <br />
           <Link className="simpleLink" to="/forgetpassword">
-            Mot de passe oublié? Récupére-le ici
+            Mot de passe oublié? Récupère-le ici
           </Link>
         </div>
       </div>

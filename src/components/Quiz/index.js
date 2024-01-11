@@ -5,27 +5,34 @@ import { QuizCulture } from "../QuizCulture";
 import Levels from "../Levels";
 import ProgressBar from "../ProgressBar";
 import QuizOver from "../QuizOver";
+import { Timestamp } from "firebase/firestore";
 
 toast.configure();
 
 class Quiz extends Component {
-  state = {
-    levelNames: ["debutant", "confirme", "expert"],
-    quizLevel: 0,
-    maxQuestions: 10,
-    storedQuestions: [],
-    question: null,
-    options: [],
-    idQuestion: 0,
-    btnDisabled: true,
-    userAnswer: null,
-    score: 0,
-    successMsg: "Bonne réponse ! +1",
-    errorMsg: "Raté...",
-    quizEnd: false,
-  };
+  constructor(props) {
+    super(props);
 
-  storedDataRef = React.createRef();
+    this.initialState = {
+      levelNames: ["debutant", "confirme", "expert"],
+      quizLevel: 0,
+      maxQuestions: 10,
+      storedQuestions: [],
+      question: null,
+      options: [],
+      idQuestion: 0,
+      btnDisabled: true,
+      userAnswer: null,
+      score: 0,
+      successMsg: "Bonne réponse ! +1",
+      errorMsg: "Raté...",
+      quizEnd: false,
+      userAnswers: [],
+    };
+
+    this.state = this.initialState;
+    this.storedDataRef = React.createRef();
+  }
 
   loadQuestions = (quizz) => {
     const fetchedArrayQuiz = QuizCulture[0].quizz[quizz];
@@ -44,7 +51,7 @@ class Quiz extends Component {
     }
   };
 
-  showWelcomeMsg = (pseudo) => {
+  showToastMsg = (pseudo) => {
     toast.info(`Bienvenue sur QuizCulture ${pseudo}, et bonne chance! `, {
       position: "top-right",
       autoClose: 4000,
@@ -63,9 +70,12 @@ class Quiz extends Component {
 
   nextQuestion = () => {
     if (this.state.idQuestion === this.state.maxQuestions - 1) {
-      this.gameOver();
+      this.setState({
+        quizEnd: true,
+      });
     } else {
       this.setState((prevState) => ({
+        userAnswers: [...prevState.userAnswers, prevState.userAnswer],
         idQuestion: prevState.idQuestion + 1,
       }));
     }
@@ -77,11 +87,6 @@ class Quiz extends Component {
         score: prevState.score + 1,
       }));
 
-      // if (this.state.score === 2) {
-      //   this.setState({
-      //     successMsg: "Encore une bonne réponse !",
-      //   });
-      // }
       toast.success(this.state.successMsg, {
         position: "top-right",
         autoClose: 2000,
@@ -108,7 +113,7 @@ class Quiz extends Component {
 
   componentDidUpdate(prevProps, prevState) {
     if (this.props.userData && this.props.userData !== prevProps.userData) {
-      this.showWelcomeMsg(this.props.userData.pseudo);
+      this.showToastMsg(this.props.userData.pseudo);
     }
 
     if (this.state.storedQuestions !== prevState.storedQuestions) {
@@ -116,6 +121,14 @@ class Quiz extends Component {
         question: this.state.storedQuestions[this.state.idQuestion].question,
         options: this.state.storedQuestions[this.state.idQuestion].options,
       });
+    }
+
+    if (this.state.quizEnd !== prevState.quizEnd) {
+      const gradepercent = this.getPercentage(
+        this.state.maxQuestions,
+        this.state.score
+      );
+      this.gameOver(gradepercent);
     }
 
     if (this.state.idQuestion !== prevState.idQuestion) {
@@ -135,10 +148,29 @@ class Quiz extends Component {
     });
   };
 
-  gameOver = () => {
-    this.setState({
-      quizEnd: true,
-    });
+  getPercentage = (maxQuest, ourScore) => (ourScore / maxQuest) * 100;
+
+  gameOver = (percent) => {
+    this.setState((prevState) => ({
+      userAnswers: [...prevState.userAnswers, prevState.userAnswer],
+    }));
+
+    if (percent >= 50) {
+      this.setState({
+        quizLevel: this.state.quizLevel + 1,
+        percent: percent,
+      });
+    } else {
+      this.setState({
+        percent: percent,
+      });
+    }
+  };
+
+  loadLevelQuestions = (param) => {
+    this.setState({ ...this.initialState, quizLevel: param });
+
+    this.loadQuestions(this.state.levelNames[param]);
   };
 
   render() {
@@ -156,8 +188,17 @@ class Quiz extends Component {
       );
     });
 
-    return !this.state.quizEnd ? (
-      <QuizOver ref={this.storedDataRef} />
+    return this.state.quizEnd ? (
+      <QuizOver
+        ref={this.storedDataRef}
+        levelNames={this.state.levelNames}
+        score={this.state.score}
+        maxQuestions={this.state.maxQuestions}
+        quizLevel={this.state.quizLevel}
+        percent={this.state.percent}
+        userAnswers={this.state.userAnswers}
+        loadLevelQuestions={this.loadLevelQuestions}
+      />
     ) : (
       <div className="quizWrapper">
         <Levels />
