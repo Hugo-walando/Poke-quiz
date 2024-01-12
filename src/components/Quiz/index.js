@@ -5,7 +5,6 @@ import { QuizCulture } from "../QuizCulture";
 import Levels from "../Levels";
 import ProgressBar from "../ProgressBar";
 import QuizOver from "../QuizOver";
-import { Timestamp } from "firebase/firestore";
 
 toast.configure();
 
@@ -200,24 +199,29 @@ class Quiz extends Component {
         loadLevelQuestions={this.loadLevelQuestions}
       />
     ) : (
-      <div className="quizWrapper">
-        <Levels />
-        <ProgressBar
-          idQuestion={this.state.idQuestion}
-          maxQuestions={this.state.maxQuestions}
+      <>
+        <Levels
+          levelNames={this.state.levelNames}
+          quizLevel={this.state.quizLevel}
         />
-        <div className="questionText">{this.state.question}</div>
-        <div>{displayOptions}</div>
-        <button
-          disabled={this.state.btnDisabled}
-          className="nextBtn"
-          onClick={this.nextQuestion}
-        >
-          {this.state.idQuestion < this.state.maxQuestions - 1
-            ? "Suivant"
-            : "Terminer"}
-        </button>
-      </div>
+        <div className="quizWrapper">
+          <ProgressBar
+            idQuestion={this.state.idQuestion}
+            maxQuestions={this.state.maxQuestions}
+          />
+          <div className="questionText">{this.state.question}</div>
+          <div className="optionsWrapper">{displayOptions}</div>
+          <button
+            disabled={this.state.btnDisabled}
+            className="nextBtn"
+            onClick={this.nextQuestion}
+          >
+            {this.state.idQuestion < this.state.maxQuestions - 1
+              ? "Suivant"
+              : "Terminer"}
+          </button>
+        </div>
+      </>
     );
   }
 }

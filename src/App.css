@@ -286,7 +286,7 @@ header {
   border-radius: 30px;
   margin: 0 auto;
   width: 70%;
-  height: 500px;
+  height: 530px;
   position: relative;
   box-shadow: 0px 0px 15px 1px rgba(47, 36, 102, 0.4);
 }
@@ -457,4 +457,13 @@ th {
   transition: 0.5s;
   color: white;
   background-color: rgb(51, 157, 85);
+}
+.levelsContainer {
+  height: 120px;
+  width: 1000px;
+  margin: 0 auto;
+}
+
+.optionsWrapper {
+  height: 230px;
 }
