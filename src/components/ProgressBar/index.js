@@ -1,13 +1,7 @@
 import React, { Fragment } from "react";
 
 const ProgressBar = ({ idQuestion, maxQuestions }) => {
-  const getWidth = (totalQuestion, questionId) => {
-    return (100 / totalQuestion) * questionId;
-  };
-
   const actualQuestion = idQuestion + 1;
-
-  const progressPercent = getWidth(maxQuestions, actualQuestion);
 
   return (
     <Fragment>
