@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const QuizOver = React.forwardRef((props, ref) => {
   const {
@@ -183,18 +182,18 @@ const QuizOver = React.forwardRef((props, ref) => {
     if (score >= averageGrade) {
       return (
         <tr>
-          <th>Resultat</th>
-          <th>Question</th>
-          <th>Bonnes Réponses</th>
-          <th>Vos Réponses</th>
+          <th className="stickyTop">Resultat</th>
+          <th className="stickyTop">Question</th>
+          <th className="stickyTop">Bonnes Réponses</th>
+          <th className="stickyTop">Vos Réponses</th>
         </tr>
       );
     } else {
       return (
         <tr>
-          <th>Resultat</th>
-          <th>Question</th>
-          <th>Vos Réponses</th>
+          <th className="stickyTop">Resultat</th>
+          <th className="stickyTop">Question</th>
+          <th className="stickyTop">Vos Réponses</th>
         </tr>
       );
     }
@@ -203,13 +202,10 @@ const QuizOver = React.forwardRef((props, ref) => {
   return (
     <Fragment>
       {decision}
-
-      <div className="answerContainer">
-        <table className="answers">
-          <thead>{showAnswers()}</thead>
-          <tbody>{questionAnswer}</tbody>
-        </table>
-      </div>
+      <table>
+        <thead>{showAnswers()}</thead>
+        <tbody>{questionAnswer}</tbody>
+      </table>
     </Fragment>
   );
 });

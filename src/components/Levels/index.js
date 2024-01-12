@@ -11,8 +11,6 @@ const Levels = ({ levelNames, quizLevel }) => {
     setLevels(quizSteps);
   }, [levelNames]);
 
-  console.log(levels);
-
   return (
     <div className="levelsContainer">
       <div>

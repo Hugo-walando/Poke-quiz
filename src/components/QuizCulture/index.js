@@ -94,14 +94,14 @@ export const QuizCulture = [
           heroId: 10,
         },
         {
-          id: 0,
+          id: 1,
           question: "Quelle est la plus grande île de la Méditerranée ?",
           options: ["La Sicile", "Chypre", "La Sardaigne", "La Corse"],
           answer: "La Sicile",
           heroId: 10,
         },
         {
-          id: 0,
+          id: 2,
           question:
             "Quel est le nom donné à un conducteur de traîneau à chien ?",
           options: ["Dog keeper", "Skipper", "Garrot", "Musher"],
@@ -109,14 +109,14 @@ export const QuizCulture = [
           heroId: 10,
         },
         {
-          id: 0,
+          id: 3,
           question: "Quelle est la formule du diamètre d'un cercle ?",
           options: ["2π x rayon", "π x rayon²", "rayon² + π", "2 x rayon"],
           answer: "2 x rayon",
           heroId: 10,
         },
         {
-          id: 0,
+          id: 4,
           question: "Par quels pays passe le Rhône ?",
           options: [
             "France et Belgique",
@@ -128,7 +128,7 @@ export const QuizCulture = [
           heroId: 10,
         },
         {
-          id: 0,
+          id: 5,
           question:
             "De quelle couleur est généralement le drapeau des arbitres de touches au foot ?",
           options: [
@@ -141,7 +141,7 @@ export const QuizCulture = [
           heroId: 10,
         },
         {
-          id: 0,
+          id: 6,
           question:
             "Quel est le nom donné de la transformation d'un élément de l'état solide à liquide ?",
           options: [
@@ -154,21 +154,21 @@ export const QuizCulture = [
           heroId: 10,
         },
         {
-          id: 0,
+          id: 7,
           question: "Quel pays est le plus grand producteur mondial de café ?",
           options: ["Brésil", "Colombie", "Vietnam", "Ethiopie"],
           answer: "Brésil",
           heroId: 10,
         },
         {
-          id: 0,
+          id: 8,
           question: "Quelle est la capitale du Canada ?",
           options: ["Toronto", "Montréal", "Ottawa", "Vancouver"],
           answer: "Ottawa",
           heroId: 10,
         },
         {
-          id: 0,
+          id: 9,
           question: "Qui était le premier empereur romain ?",
           options: ["Auguste", "Jules César", "Néron", "Caligula"],
           answer: "Auguste",

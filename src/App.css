@@ -372,31 +372,6 @@ header {
   margin-bottom: 20px;
   color: rgb(51, 157, 85);
 }
-table {
-  margin: 0 auto;
-  margin-top: 20px;
-  box-shadow: 0px 0px 15px 1px rgba(47, 36, 102, 0.4);
-  border-radius: 20px;
-  overflow: hidden;
-  height: 100%;
-  border-collapse: collapse;
-}
-
-table,
-th,
-td {
-  border: 1px solid lightgray;
-}
-
-th,
-td {
-  padding: 10px;
-}
-
-th {
-  background-color: rgb(51, 157, 85);
-  color: white;
-}
 
 .btnInfo {
   margin-top: 10px;
@@ -466,4 +441,65 @@ th {
 
 .optionsWrapper {
   height: 230px;
+}
+
+.loader {
+  border: 10px solid lightgrey;
+  border-radius: 50%;
+  border-top: 10px solid rgb(51, 157, 85);
+  width: 50px;
+  height: 50px;
+  -webkit-animation: spin 1s linear infinite;
+  animation: spin 1s linear infinite;
+  margin: 40px auto 20px;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.stickyTop {
+  position: sticky;
+  top: 0;
+}
+
+table {
+  margin: 0 auto;
+  margin-top: 40px;
+  box-shadow: 0px 0px 15px 1px rgba(47, 36, 102, 0.4);
+  border-radius: 20px;
+  border-collapse: collapse;
+}
+
+table,
+th,
+td {
+  border: 1px solid lightgray;
+}
+
+th,
+td {
+  padding: 10px;
+}
+
+th {
+  background-color: rgb(51, 157, 85);
+  color: white;
+  z-index: 1;
 }
