@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useState } from "react";
+import Modal from "../Modal";
 
 const QuizOver = React.forwardRef((props, ref) => {
   const {
@@ -12,10 +13,22 @@ const QuizOver = React.forwardRef((props, ref) => {
   } = props;
 
   const [asked, setAsked] = useState([]);
+  const [openModal, setOpenModal] = useState(false);
+  const [selectedQuestion, setSelectedQuestion] = useState(null);
 
   useEffect(() => {
     setAsked(ref.current);
   }, [ref]);
+
+  const showModal = (id) => {
+    const selected = asked.find((question) => question.id === id);
+    setSelectedQuestion(selected);
+    setOpenModal(true);
+  };
+
+  const closeModal = () => {
+    setOpenModal(false);
+  };
 
   const averageGrade = maxQuestions / 2;
 
@@ -139,6 +152,11 @@ const QuizOver = React.forwardRef((props, ref) => {
           <td>{question.question}</td>
           <td>{question.answer} </td>
           <td>{userResponse}</td>
+          <td>
+            <button className="btnInfo" onClick={() => showModal(question.id)}>
+              Infos
+            </button>
+          </td>
         </tr>
       );
     } else {
@@ -186,6 +204,7 @@ const QuizOver = React.forwardRef((props, ref) => {
           <th className="stickyTop">Question</th>
           <th className="stickyTop">Bonnes Réponses</th>
           <th className="stickyTop">Vos Réponses</th>
+          <th className="stickyTop">Infos</th>
         </tr>
       );
     } else {
@@ -206,6 +225,25 @@ const QuizOver = React.forwardRef((props, ref) => {
         <thead>{showAnswers()}</thead>
         <tbody>{questionAnswer}</tbody>
       </table>
+      <Modal showModal={openModal} closeModal={closeModal}>
+        <div className="modalHeader">
+          {selectedQuestion && selectedQuestion.question}
+        </div>
+        <div className="modalBody">
+          <div className="detailsImg">
+            {selectedQuestion && selectedQuestion.img && (
+              <img src={selectedQuestion.img} alt="Info" />
+            )}
+          </div>
+          <div className="modalDetails">
+            <h3>Description</h3>
+            <p>{selectedQuestion && selectedQuestion.info}</p>
+          </div>
+        </div>
+        <div className="modalFooter">
+          <button className="modalBtn">Fermer</button>
+        </div>
+      </Modal>
     </Fragment>
   );
 });
