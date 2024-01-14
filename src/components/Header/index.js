@@ -1,5 +1,3 @@
-import Logout from "../Logout";
-
 const Header = () => {
   return (
     <header>
@@ -8,7 +6,6 @@ const Header = () => {
           <a href="/" className="title">
             QuizCulture
           </a>
-          <Logout />
         </div>
       </div>
     </header>

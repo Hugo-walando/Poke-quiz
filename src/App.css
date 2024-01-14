@@ -258,15 +258,16 @@ header {
   width: 60%;
   display: flex;
   justify-content: flex-end;
-  margin-bottom: 30px;
 }
 
 .decoBtn {
-  cursor: pointer;
+  color: lightgrey;
+  height: 30px;
 }
 
 .decoBtn:hover {
-  text-decoration: underline;
+  cursor: pointer;
+  color: rgb(255, 87, 87);
 }
 
 .error {
@@ -609,4 +610,15 @@ th {
   border-bottom: 1px solid lightgrey;
   text-transform: uppercase;
   color: black;
+}
+
+.trophy {
+  color: rgb(255, 242, 0);
+  height: 60px;
+}
+
+.confetti {
+  position: absolute;
+  top: 30%;
+  left: 50%;
 }

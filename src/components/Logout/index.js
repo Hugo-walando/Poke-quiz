@@ -1,6 +1,9 @@
 import { signOut } from "firebase/auth";
 import { auth } from "../Firebase/firebaseConfig";
 import { useNavigate } from "react-router-dom";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "../fontAwesome";
+import { Tooltip } from "react-tooltip";
 
 const Logout = () => {
   const navigate = useNavigate();
@@ -21,9 +24,14 @@ const Logout = () => {
 
   return (
     <div className="logoutContainer">
-      <div className="decoBtn" onClick={handleClick}>
+      <FontAwesomeIcon
+        icon="power-off"
+        className="decoBtn"
+        onClick={handleClick}
+      />
+      <Tooltip anchorSelect=".decoBtn" place="left" effect="solid">
         Déconnexion
-      </div>
+      </Tooltip>
     </div>
   );
 };

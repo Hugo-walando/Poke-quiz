@@ -1,5 +1,8 @@
 import React, { Fragment, useEffect, useState } from "react";
 import Modal from "../Modal";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "../fontAwesome";
+import Confetti from "react-dom-confetti";
 
 const QuizOver = React.forwardRef((props, ref) => {
   const {
@@ -15,10 +18,29 @@ const QuizOver = React.forwardRef((props, ref) => {
   const [asked, setAsked] = useState([]);
   const [openModal, setOpenModal] = useState(false);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
+  const [showConfetti, setShowConffeti] = useState(false);
+
+  const averageGrade = maxQuestions / 2;
+
+  const config = {
+    angle: 90,
+    spread: 500,
+    startVelocity: 40,
+    elementCount: 100,
+    dragFriction: 0.1,
+    duration: 12000,
+    stagger: 3,
+    width: "15px",
+    height: "15px",
+    colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"],
+  };
 
   useEffect(() => {
     setAsked(ref.current);
-  }, [ref]);
+    if (asked.length === maxQuestions && score >= averageGrade) {
+      setShowConffeti(true);
+    }
+  }, [ref, asked, maxQuestions, score, averageGrade]);
 
   const showModal = (id) => {
     const selected = asked.find((question) => question.id === id);
@@ -29,8 +51,6 @@ const QuizOver = React.forwardRef((props, ref) => {
   const closeModal = () => {
     setOpenModal(false);
   };
-
-  const averageGrade = maxQuestions / 2;
 
   const decision =
     score >= averageGrade ? (
@@ -61,6 +81,10 @@ const QuizOver = React.forwardRef((props, ref) => {
             </>
           ) : (
             <>
+              <div className="confetti">
+                <Confetti active={showConfetti} config={config} />
+              </div>
+              <FontAwesomeIcon icon="trophy" className="trophy" />
               <div className="successMsg">Bravo, vous êtes un expert !</div>
               <button
                 className="btnResult"
