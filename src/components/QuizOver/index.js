@@ -153,10 +153,7 @@ const QuizOver = React.forwardRef((props, ref) => {
           <td>{question.answer} </td>
           <td>{userResponse}</td>
           <td>
-            <button
-              className="btnInfo"
-              onClick={() => showModal(question.heroId)}
-            >
+            <button className="btnInfo" onClick={() => showModal(question.id)}>
               Infos
             </button>
           </td>
