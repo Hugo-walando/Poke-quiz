@@ -5,6 +5,7 @@ import { getDoc } from "firebase/firestore";
 import { useNavigate } from "react-router-dom";
 import Quiz from "../Quiz";
 import Loader from "../Loader";
+import Logout from "../Logout";
 
 const Welcome = () => {
   const navigate = useNavigate();
@@ -37,11 +38,14 @@ const Welcome = () => {
   return userSession === null ? (
     <Loader loadingMsg={"Chargement ..."} styling={{ textAlign: "center" }} />
   ) : (
-    <div className="quiz-bg">
-      <div className="container">
-        <Quiz userData={userData} />
+    <>
+      <Logout />
+      <div className="quiz-bg">
+        <div className="container">
+          <Quiz userData={userData} />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

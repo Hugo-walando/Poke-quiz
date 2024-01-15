@@ -271,7 +271,7 @@ export const QuizCulture = [
         {
           id: 24,
           question:
-            "Quel joueur rocket league francais a gagné ses premiers RLCS ?",
+            "Quel joueur rocket league francais a gagné ses premiers   RLCS ?",
           options: ["Zen", "Vatira", "Alpha54", "Kaydop"],
           answer: "Zen",
           info: "Alexis « Zen » Bernier est un jeune joueur professionnel sur Rocket League. Né le 20 février 2007 (16 ans), il fait partie de l'équipe esport Vitality.  Malgré sa faible expérience en compétition de haut niveau, il est considéré par de nombreux experts comme un prodige et l'un des meilleurs au monde sur Rocket League. Depuis le Le 14 mai 2023, Zen avec son équipe Vitality a remporté les 3 regionaux des RLCS européens depuis son arrivée en ligue professionnelle. Le 13 août 2023, Zen avec la Team Vitality devient champion du monde sur Rocket League.",
