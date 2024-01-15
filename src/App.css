@@ -681,6 +681,13 @@ th {
   .quizWrapper {
     width: 100%;
   }
+
+  .modalBody {
+    flex-direction: column-reverse;
+  }
+  .detailsImg img {
+    width: 250px;
+  }
 }
 
 @media (max-width: 430px) {
