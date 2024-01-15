@@ -146,7 +146,7 @@ const QuizOver = React.forwardRef((props, ref) => {
     if (score >= averageGrade) {
       return (
         <tr key={question.id}>
-          <td>
+          <td data-title="Résultat">
             {userResponse === question.answer ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -173,10 +173,10 @@ const QuizOver = React.forwardRef((props, ref) => {
               </svg>
             )}
           </td>
-          <td>{question.question}</td>
-          <td>{question.answer} </td>
-          <td>{userResponse}</td>
-          <td>
+          <td data-title="Question">{question.question}</td>
+          <td data-title="Bonne Réponse">{question.answer} </td>
+          <td data-title="Votre Réponse">{userResponse}</td>
+          <td data-title="Info">
             <button className="btnInfo" onClick={() => showModal(question.id)}>
               Infos
             </button>
@@ -186,7 +186,7 @@ const QuizOver = React.forwardRef((props, ref) => {
     } else {
       return (
         <tr key={question.id}>
-          <td>
+          <td data-title="Résultat">
             {userResponse === question.answer ? (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -213,8 +213,8 @@ const QuizOver = React.forwardRef((props, ref) => {
               </svg>
             )}
           </td>
-          <td>{question.question}</td>
-          <td>{userResponse}</td>
+          <td data-title="Question">{question.question}</td>
+          <td data-title="Votre Réponse">{userResponse}</td>
         </tr>
       );
     }
@@ -224,11 +224,11 @@ const QuizOver = React.forwardRef((props, ref) => {
     if (score >= averageGrade) {
       return (
         <tr>
-          <th className="stickyTop">Resultat</th>
+          <th className="stickyTop">Résultat</th>
           <th className="stickyTop">Question</th>
-          <th className="stickyTop">Bonnes Réponses</th>
-          <th className="stickyTop">Vos Réponses</th>
-          <th className="stickyTop">Infos</th>
+          <th className="stickyTop">Bonne Réponse</th>
+          <th className="stickyTop">Votre Réponse</th>
+          <th className="stickyTop">Info</th>
         </tr>
       );
     } else {
@@ -236,7 +236,7 @@ const QuizOver = React.forwardRef((props, ref) => {
         <tr>
           <th className="stickyTop">Resultat</th>
           <th className="stickyTop">Question</th>
-          <th className="stickyTop">Vos Réponses</th>
+          <th className="stickyTop">Votre Réponse</th>
         </tr>
       );
     }
