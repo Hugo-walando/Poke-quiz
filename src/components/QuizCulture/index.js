@@ -80,7 +80,7 @@ export const QuizCulture = [
             "Quel est le joueur de League of legends ayant gagné le plus de fois les Worlds ?",
           options: ["Faker", "Rookie", "Uzi", "Rekkles"],
           answer: "Faker",
-          info: "Lee Sang-hyeok (en coréen 이상혁), connu sous le pseudonyme de Faker, est un joueur professionnel sud-coréen de League of Legends né le 7 mai 1996. Il est recruté par SK Telecom en 2013 et est actuellement midlaner pour l'équipe T1. Il est connu pour ses talents sur League of Legends et est considéré par beaucoup comme le meilleur joueur de tous les temps. Il est le seul joueur à avoir gagné quatre fois le Championnat du monde de League of Legends (2013, 2015, 2016 et 2023). Ses récompenses s`élèvent à 1 470 490.14 $, ce qui le classe 76e1 de tous les joueurs d'esport en termes de revenus.",
+          info: "Lee Sang-hyeok, connu sous le pseudonyme de Faker, est un joueur professionnel sud-coréen de League of Legends né le 7 mai 1996. Il est connu pour ses talents sur League of Legends et est considéré par beaucoup comme le meilleur joueur de tous les temps. Il est le seul joueur à avoir gagné quatre fois le Championnat du monde de League of Legends (2013, 2015, 2016 et 2023).",
           img: "https://media2.giphy.com/media/v1.Y2lkPTc5MGI3NjExZmNuZHc3ODQ1N2MzbWFkNXI1M3A2eGtmMGpmZWhsM3IzazJjdDFscSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26Ec7TKFZ9XED3MM8/giphy.gif",
           heroid: 7,
         },
@@ -275,7 +275,7 @@ export const QuizCulture = [
           options: ["Zen", "Vatira", "Alpha54", "Kaydop"],
           answer: "Zen",
           info: "Alexis « Zen » Bernier est un jeune joueur professionnel sur Rocket League. Né le 20 février 2007 (16 ans), il fait partie de l'équipe esport Vitality.  Malgré sa faible expérience en compétition de haut niveau, il est considéré par de nombreux experts comme un prodige et l'un des meilleurs au monde sur Rocket League. Depuis le Le 14 mai 2023, Zen avec son équipe Vitality a remporté les 3 regionaux des RLCS européens depuis son arrivée en ligue professionnelle. Le 13 août 2023, Zen avec la Team Vitality devient champion du monde sur Rocket League.",
-          img: "https://liquipedia.net/commons/images/thumb/2/2f/RLCS_Spring_Major_2022-23_LAN_Michal_Konkol_zen.jpg/250px-RLCS_Spring_Major_2022-23_LAN_Michal_Konkol_zen.jpg",
+          img: "https://www.lequipe.fr/_medias/img-photo-jpg/alexis-zen-bernier-sur-le-toit-du-stade-de-france-ou-se-trouve-le-centre-d-entrainement-vitality-fabien-tran-minh-team-vitality/1500000001783089/294:0,1094:800-828-828-75/bdfb0",
           heroid: 24,
         },
         {

@@ -73,7 +73,6 @@ class Quiz extends Component {
         quizEnd: true,
       });
     } else {
-      console.log(this.state.userAnswers);
       if (this.state.userAnswer !== "") {
         this.setState((prevState) => ({
           userAnswers: [...this.state.userAnswers, this.state.userAnswer],

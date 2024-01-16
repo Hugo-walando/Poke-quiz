@@ -34,7 +34,10 @@ const Signup = () => {
         navigate("/welcome");
       })
       .catch((error) => {
-        setError(error);
+        console.log(error);
+        if (error.code === "auth/email-already-in-use") {
+          setError("L'adresse email est déjà utilisée");
+        }
         setLoginData({ ...data });
       });
   };
@@ -51,7 +54,7 @@ const Signup = () => {
       <button>S'inscrire</button>
     );
 
-  const errorMsg = error !== "" && <span>{error.message} </span>;
+  const errorMsg = error !== "" && <span>{error}</span>;
 
   const navigate = useNavigate();
   return (

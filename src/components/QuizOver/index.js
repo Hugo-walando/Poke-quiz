@@ -3,6 +3,8 @@ import Modal from "../Modal";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../fontAwesome";
 import Confetti from "react-dom-confetti";
+import { auth, user } from "../Firebase/firebaseConfig";
+import { updateDoc } from "firebase/firestore";
 
 const QuizOver = React.forwardRef((props, ref) => {
   const {
@@ -35,10 +37,29 @@ const QuizOver = React.forwardRef((props, ref) => {
     colors: ["#a864fd", "#29cdff", "#78ff44", "#ff718d", "#fdff6a"],
   };
 
+  const recordFinishDate = async () => {
+    const userId = auth.currentUser.uid;
+
+    if (userId) {
+      const userRef = user(userId); // Utilisez la fonction user avec l'ID de l'utilisateur
+
+      // Capturez la date actuelle
+      const currentDate = new Date();
+
+      try {
+        // Mettez à jour la base de données Firestore avec la date actuelle
+        await updateDoc(userRef, { quizFinishedAt: currentDate });
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
   useEffect(() => {
     setAsked(ref.current);
-    if (asked.length === maxQuestions && score >= averageGrade) {
+    if (ref.current[9].id === 29 && score >= averageGrade) {
       setShowConffeti(true);
+      recordFinishDate();
     }
   }, [ref, asked, maxQuestions, score, averageGrade]);
 
@@ -117,8 +138,11 @@ const QuizOver = React.forwardRef((props, ref) => {
       <>
         <div className="stepsBtnContainer">
           <div className="failureMsg">Vous avez échoué !</div>
-          <button className="btnResult" onClick={() => loadLevelQuestions(0)}>
-            Recommencer le quiz{" "}
+          <button
+            className="btnResult"
+            onClick={() => loadLevelQuestions(quizLevel)}
+          >
+            Recommencer le niveau{" "}
             <svg
               xmlns="http://www.w3.org/2000/svg"
               height="19"
@@ -132,7 +156,7 @@ const QuizOver = React.forwardRef((props, ref) => {
             </svg>
           </button>
           <div className="percentage">
-            <div>Réussite: {percent}</div>
+            <div>Réussite: {percent}%</div>
             <div>
               Note: {score}/{maxQuestions}
             </div>
