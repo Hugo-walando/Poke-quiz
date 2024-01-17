@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "../fontAwesome";
 import Confetti from "react-dom-confetti";
 import { auth, user } from "../Firebase/firebaseConfig";
-import { updateDoc } from "firebase/firestore";
+import { increment, updateDoc } from "firebase/firestore";
 
 const QuizOver = React.forwardRef((props, ref) => {
   const {
@@ -21,6 +21,7 @@ const QuizOver = React.forwardRef((props, ref) => {
   const [openModal, setOpenModal] = useState(false);
   const [selectedQuestion, setSelectedQuestion] = useState(null);
   const [showConfetti, setShowConffeti] = useState(false);
+  const [failCount, setFailCount] = useState(0);
 
   const averageGrade = maxQuestions / 2;
 
@@ -41,13 +42,11 @@ const QuizOver = React.forwardRef((props, ref) => {
     const userId = auth.currentUser.uid;
 
     if (userId) {
-      const userRef = user(userId); // Utilisez la fonction user avec l'ID de l'utilisateur
+      const userRef = user(userId);
 
-      // Capturez la date actuelle
       const currentDate = new Date();
 
       try {
-        // Mettez à jour la base de données Firestore avec la date actuelle
         await updateDoc(userRef, { quizFinishedAt: currentDate });
       } catch (error) {
         console.error(error);
@@ -71,6 +70,21 @@ const QuizOver = React.forwardRef((props, ref) => {
 
   const closeModal = () => {
     setOpenModal(false);
+  };
+
+  const failCounter = async () => {
+    const userId = auth.currentUser.uid;
+
+    if (userId) {
+      const userRef = user(userId);
+
+      try {
+        await updateDoc(userRef, { failCount: increment(1) });
+        setFailCount((prevCount) => prevCount + 1);
+      } catch (error) {
+        console.error(error);
+      }
+    }
   };
 
   const decision =
@@ -105,7 +119,8 @@ const QuizOver = React.forwardRef((props, ref) => {
               <div className="confetti">
                 <Confetti active={showConfetti} config={config} />
               </div>
-              <FontAwesomeIcon icon="trophy" className="trophy" />
+              <div className="score">Score: {30 - failCount * 2}</div>
+              <FontAwesomeIcon icon="trophy" beat={true} className="trophy" />
               <div className="successMsg">Bravo, vous êtes un expert !</div>
               <button
                 className="btnResult"
@@ -140,7 +155,10 @@ const QuizOver = React.forwardRef((props, ref) => {
           <div className="failureMsg">Vous avez échoué !</div>
           <button
             className="btnResult"
-            onClick={() => loadLevelQuestions(quizLevel)}
+            onClick={() => {
+              loadLevelQuestions(quizLevel);
+              failCounter();
+            }}
           >
             Recommencer le niveau{" "}
             <svg
